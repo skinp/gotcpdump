@@ -1,6 +1,6 @@
 # About
 
-A dumbed down Go tcpdump that prints *some* data of each capture packets out to sdtout as a JSON document.
+A dumbed down Go tcpdump that prints **some** data of each capture packets out to sdtout as a JSON document.
 
 What is in the JSON blob:
 * Hostname where we capture
