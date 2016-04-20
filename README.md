@@ -17,4 +17,4 @@ What is in the JSON blob:
 
     go get -u github.com/skinp/gotcpdump
     go install github.com/skinp/gotcpdump
-    gotcpdump -S SNAPSHOT_LENGTH -d DEVICE_NAME -f PCAP_FILTER -p PROMISCIOUS_BOOL
+    gotcpdump -s SNAPSHOT_LENGTH -i DEVICE_NAME -f PCAP_FILTER

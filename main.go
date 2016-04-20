@@ -6,24 +6,28 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/pcap"
 )
 
+const (
+	promiscuous = true
+)
+
 var (
-	device      = flag.String("d", "eth0", "device")
-	filter      = flag.String("f", "", "filter")
-	snapshot    = flag.Int("S", 1024, "snapshot length")
-	promiscuous = flag.Bool("p", true, "promiscuous")
+	device   = flag.String("i", "any", "device interface")
+	filter   = flag.String("f", "", "filter")
+	snapshot = flag.Int("s", 1024, "snapshot length")
 
 	errorLog = log.New(os.Stderr, "", 0)
 )
 
 type Event struct {
-	Hostname  string `json:"hostname"`
-	Timestamp string `json:"time"`
-	Length    int    `json:"length"`
+	Hostname  string    `json:"hostname"`
+	Timestamp time.Time `json:"time"`
+	Length    int       `json:"length"`
 
 	Layer3 string `json:"l3_type"`
 	SrcIP  string `json:"src_ip"`
@@ -51,7 +55,7 @@ func process(p gopacket.Packet) {
 
 	e := Event{
 		Hostname:  hostname,
-		Timestamp: timestamp.String(),
+		Timestamp: timestamp,
 		Length:    length,
 
 		Layer3: l3Type.String(),
@@ -78,7 +82,7 @@ func main() {
 	handle, err := pcap.OpenLive(
 		*device,
 		int32(*snapshot),
-		*promiscuous,
+		promiscuous,
 		pcap.BlockForever,
 	)
 	if err != nil {
