@@ -1,0 +1,14 @@
+{
+    "memo": "6f9d3fb0dcba2ad95f7159954c1f59525f5aa9537d470bc375399420ac83ad55",
+    "projects": [
+        {
+            "name": "github.com/google/gopacket",
+            "version": "v1.1.12",
+            "revision": "b83f94714c36e30ce851be1d5a0a5226f9f1bca4",
+            "packages": [
+                ".",
+                "pcap"
+            ]
+        }
+    ]
+}
